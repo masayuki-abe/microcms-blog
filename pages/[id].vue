@@ -1,5 +1,5 @@
 <template>
-  <template v-if="data">
+  <div v-if="data">
     <h1 class="text-3xl font-semibold">
       {{ data.title }}
     </h1>
@@ -18,18 +18,17 @@
         {{ data.publishedAt ?? data.createdAt }}
       </div>
     </div>
-    <div v-html="data.content" class="prose mt-6 md:mt-10"></div>
-  </template>
+    <div class="prose mt-6 md:mt-10" v-html="data.content" />
+  </div>
 </template>
 
 <script setup lang="ts">
-  import type { Blog } from "~~/types/Blog";
+import type { Blog } from '~~/types/Blog'
 
-  const { params } = useRoute();
+const { params } = useRoute()
 
-  const { data } = await useMicroCMSGetListDetail<Blog>({
-    endpoint: "blogs",
-    contentId: Array.isArray(params.id) ? params.id[0] : params.id,
-  });
-  console.log(data);
+const { data } = await useMicroCMSGetListDetail<Blog>({
+  endpoint: 'blogs',
+  contentId: Array.isArray(params.id) ? params.id[0] : params.id
+})
 </script>
