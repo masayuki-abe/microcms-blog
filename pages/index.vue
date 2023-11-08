@@ -24,7 +24,7 @@
               {{ blog.title }}
             </div>
             <div class="mt-1 text-sm text-gray-700">
-              {{ blog.publishedAt ?? blog.createdAt }}
+              {{ dateFormat(blog.publishedAt ?? blog.createdAt) }}
             </div>
           </div>
         </NuxtLink>
